@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">SocialMedia</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="search">Search...</string>
+    <string name="like">Like</string>
+    <string name="comment">Comment</string>
+    <string name="write_a_post">Write a post</string>
+    <string name="share">Share</string>
+    <string name="post_heading">What\'s on your mind?</string>
+    <string name="photos">Photos</string>
+    <string name="status">Status</string>
+    <string name="gallery">Upload Image</string>
+    <string name="sign_up">sign up</string>
+    <string name="first_name">First name</string>
+    <string name="lastname">Last name</string>
+    <string name="email">Email</string>
+    <string name="login_here">Login here</string>
+    <string name="post">Post</string>
+
+    <string-array name="spinner_label">
+        <item>Female</item>
+        <item>Male</item>
+
+    </string-array>
+</resources>
