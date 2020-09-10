@@ -1,67 +1,69 @@
 package com.project.socialmedia;
 
-import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.project.socialmedia.model.Post;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.project.socialmedia.login.course;
+import static com.project.socialmedia.login.faculty;
 import static com.project.socialmedia.login.firstname;
 import static com.project.socialmedia.login.lastname;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
+public class MyPostsAdapter extends RecyclerView.Adapter<MyPostsAdapter.MyViewHolder>{
 
-    private List<Post>postList;
     private Context context;
+    private ArrayList<Post> myposts;
 
-    public MyAdapter(List<Post>postList){
-
-        this.postList = postList;
+    public MyPostsAdapter(ArrayList<Post> myposts) {
+        this.myposts = myposts;
     }
+
     @NonNull
     @Override
-    public MyAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+    public MyPostsAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View  view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_item,parent,false);
         context = view.getContext();
-        return new MyViewHolder(view);
+        return new MyPostsAdapter.MyViewHolder(view);
     }
 
-    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
-        Post post = postList.get(position);
+    public void onBindViewHolder(@NonNull MyPostsAdapter.MyViewHolder holder, int position) {
 
-        Picasso.with(context).
-                load(post.getImageData())
-                .into(holder.Media);
+        try {
+            Post post = myposts.get(position);
 
-        holder.description.setText(post.getPost());
-        holder.likes.setText(String.valueOf(post.getLikes()) +" likes");
-        holder.comments.setText(String.valueOf(post.getComments())+" comments");
+            Picasso.with(context).
+                    load(post.getImageData())
+                    .into(holder.Media);
 
-
+            holder.description.setText(post.getPost());
+            holder.likes.setText(String.valueOf(post.getLikes()) + " likes");
+            holder.comments.setText(String.valueOf(post.getComments()) + " comments");
+            holder.name.setText(firstname + " " + lastname);
+            holder.faculty.setText(faculty);
+            holder.course.setText(course);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
     @Override
     public int getItemCount() {
-        return postList.size();
+        return myposts.size();
     }
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView name,faculty,course,description,likes, comments, like_btn,comment_btn,share_btn;
@@ -87,44 +89,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             comment_btn.setOnClickListener(this);
             share_btn.setOnClickListener(this);
             profile_pic.setOnClickListener(this);
-
-
-
-
-
-
         }
 
         @Override
         public void onClick(View view) {
-            switch (view.getId()){
-                case R.id.like:
-                    Toast.makeText(view.getContext(),"clicked like",Toast.LENGTH_SHORT).show();
-                    break; 
-                case R.id.comment:
-                    Toast.makeText(view.getContext(),"clicked comment",Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.share:
-                    Toast.makeText(view.getContext(),"clicked share",Toast.LENGTH_SHORT).show();
-                    break;
-                case R.id.profile_image:
-                    Intent intent = new Intent(view.getContext(),profile.class);
-                    itemView.getContext().startActivity(intent);
 
-               break;
-            }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 

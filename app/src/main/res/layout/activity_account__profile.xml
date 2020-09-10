@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#AEFFFFFF">
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#ffffff"
+    tools:context=".Account_Profile">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,21 +16,19 @@
             layout="@layout/layout_profile_header" />
 
 
-
         <TextView
             android:layout_width="match_parent"
             android:layout_marginTop="12dp"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
             android:background="@android:color/white"
             android:text="@string/posts" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
 
